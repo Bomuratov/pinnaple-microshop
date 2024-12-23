@@ -1,0 +1,13 @@
+.env
+/env
+env/
+/venv
+venv/
+certificates
+certificates/
+/certificates
+/certificates/
+__pycache__
+/__pycache__
+__pycache__/
+/__pycache__/
