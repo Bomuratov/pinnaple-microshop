@@ -1,10 +1,11 @@
 from fastapi import Depends, APIRouter, Form
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Annotated
+from enum import Enum
+
 from core import settings, db_helper
 from schemas.market import RoleAddEdit, RoleRead
 from crud.market import UserRoleCRUD
-from enum import Enum 
 
 router = APIRouter(tags=["User Roles"], prefix=settings.api.auth.role)
 

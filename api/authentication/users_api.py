@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Annotated
 from crud.market import UserCRUD
 from core import db_helper, settings
-from schemas.market import UserAddEdit, UserRead, UserGetByUUID
+from schemas.market import UserAddEdit, UserRead, UserEdit
 
 
 router = APIRouter(tags=["Users"], prefix=settings.api.auth.user)
@@ -20,6 +20,7 @@ async def user_get_list(session: AsyncSession = Depends(db_helper.session_getter
 async def user_get_by_id(id: int, session: AsyncSession = Depends(db_helper.session_getter)):
     return await UserCRUD.get_by_id(id, session)
 
-@router.post("/uuid", response_model=UserRead)
-async def get_user_by_uuid(uid: Annotated[UserGetByUUID, Form()], session: AsyncSession = Depends(db_helper.session_getter)):
-    return await UserCRUD.get_by_uuid(uuid=uid.uuid, session=session)
+@router.put("/{id}", response_model=UserRead)
+async def user_update(id: int, data: Annotated[UserEdit, Form()], session: AsyncSession = Depends(db_helper.session_getter)):
+    return await UserCRUD.update(id, data,session)
+

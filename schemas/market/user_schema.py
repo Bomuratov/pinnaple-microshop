@@ -17,7 +17,6 @@ class UserAddEdit(BaseModel):
 
 class UserRead(UserAddEdit):
     id: int
-    uuid: UUID4
     username: str
     email: str
     phone: str
@@ -28,5 +27,13 @@ class UserRead(UserAddEdit):
     is_superuser: Optional[bool]
     is_staff: Optional[bool]
 
-class UserGetByUUID(BaseModel):
-    uuid: UUID4
+class UserEdit(BaseModel):
+    username: str | None
+    email: str | None
+    phone: str | None
+    name: str | None
+    surname: str | None
+    is_active: bool | None
+    is_superuser: bool | None
+    is_staff: bool | None
+    is_manager: bool | None

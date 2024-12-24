@@ -1,10 +1,9 @@
-from fastapi import status
-from sqlalchemy import select
+from fastapi import status, HTTPException
+from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.engine import Result
 from models import UserModel
-from schemas.market import UserAddEdit, UserRead, UserGetByUUID
-from pydantic.types import UUID4
+from schemas.market.user_schema import UserAddEdit, UserEdit
 
 
 
@@ -30,7 +29,18 @@ class UserCRUD:
         stmt = result.scalar_one_or_none()
         return stmt
     
-    async def get_by_uuid(uuid: UserGetByUUID, session: AsyncSession):
-        stmt = select(UserModel).where(UserModel.uuid == uuid)
-        result: Result = await session.execute(stmt)
-        return result.scalar_one_or_none()
+    async def update(id: int, data: UserEdit, session: AsyncSession):
+        stmt = select(UserModel).where(UserModel.id == id)
+        result = await session.execute(stmt)
+        
+        if result is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= "Not found")
+        
+        user = result.scalar_one_or_none()
+        for key, value in data.model_dump().items():
+            if value is not None:
+                setattr(user, key, value)
+        session.add(user)
+        await session.commit()
+        await session.refresh(user)
+        return user

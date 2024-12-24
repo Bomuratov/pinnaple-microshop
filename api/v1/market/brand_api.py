@@ -1,11 +1,12 @@
 from fastapi import Depends, APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
+from backend.authorization import check_user
 from crud.market import BrandCRUD
 from core import db_helper, settings
 from schemas.market import BrandGet, BrandAddOrEdit
 
-router = APIRouter(tags=["Brand"], prefix=settings.api.v1.brand,)
+router = APIRouter(tags=["Brand"], prefix=settings.api.v1.brand, dependencies=[Depends(check_user)])
 
 @router.post("/", response_model=BrandGet)
 async def brand_add(income: BrandAddOrEdit, session: AsyncSession = Depends(db_helper.session_getter)):

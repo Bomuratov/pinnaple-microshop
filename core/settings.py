@@ -16,6 +16,8 @@ class ApiAuthPrefix(BaseModel):
     prefix: str = "/auth"
     user: str = "/user"
     role: str = "/role"
+    login: str = "/login"
+    logout: str = "/logout"
 
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"

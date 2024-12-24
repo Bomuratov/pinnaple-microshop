@@ -25,12 +25,22 @@ class BrandCRUD:
     async def get(id: int, session: AsyncSession):
         stmt = select(Brand).where(Brand.id == id)
         result: Result = await session.execute(stmt)
+        if result is None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Not found"
+            )
         stmt = result.scalar_one_or_none()
         return stmt
     
     async def update(id: int, name: str, session: AsyncSession):
         result = await session.execute(select(Brand).filter(Brand.id == id))
         brand = result.scalar_one_or_none()
+        if brand == None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Not found"
+            )
         brand.name=name
         await session.commit()
         return brand
@@ -39,6 +49,11 @@ class BrandCRUD:
     async def delete(id: int, session: AsyncSession):
         result = await session.execute(select(Brand).filter(Brand.id == id))
         brand = result.scalar_one_or_none()
+        if brand == None:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Not found"
+            )
         await session.delete(brand)
         await session.commit()
         return {"message": status.HTTP_204_NO_CONTENT}
