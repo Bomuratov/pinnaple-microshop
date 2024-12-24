@@ -1,12 +1,12 @@
 from fastapi import Depends, APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
-from backend.authorization import check_user
+from backend.authorization import CheckUser
 from crud.market import CategoryCRUD
 from core import db_helper, settings
 from schemas.market import CategoryGET, CategoryCreate
 
-router = APIRouter(tags=["Category"],prefix=settings.api.v1.category, dependencies=[Depends(check_user)])
+router = APIRouter(tags=["Category"],prefix=settings.api.v1.category, dependencies=[Depends(CheckUser.check_user)])
 
 @router.post("/", response_model=CategoryGET)
 async def brand_add(income: CategoryCreate, session: AsyncSession = Depends(db_helper.session_getter)):

@@ -8,3 +8,8 @@ class Unauthorized(HTTPException):
 class Badcredentials(HTTPException):
     def __init__(self, detail="Неверные учетные данные"):
         super().__init__(status_code=400, detail=detail)
+
+
+class NotEnoughRights(HTTPException):
+    def __init__(self, detail="Недостаточно прав"):
+        super().__init__(status_code=403, detail=detail)

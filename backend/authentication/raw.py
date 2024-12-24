@@ -13,8 +13,8 @@ from fastapi.security import (
 )
 from pydantic import BaseModel
 
-from auth import utils as auth_utils
-from users.schemas import UserSchema
+# from auth import utils as auth_utils
+# from users.schemas import UserSchema
 
 # http_bearer = HTTPBearer()
 oauth2_scheme = OAuth2PasswordBearer(
