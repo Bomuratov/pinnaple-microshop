@@ -17,3 +17,4 @@ async def bot_webhook(update: UpdateSchema):
     print(update)
     update = types.Update(**update.dict())
     await dispatcher.feed_update(bot, update)
+    
