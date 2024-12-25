@@ -47,17 +47,23 @@ class DatabaseConfig(BaseModel):
     pool_size: int = 50
     max_overflow: int = 10
 
+class BotConfig(BaseModel):
+    bot_token: str
+    webhook_path: str = "/bot/"
+    webhook_url: str
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=(".env"),
         case_sensitive=False,
         env_nested_delimiter="-",
-        env_prefix="APP-CONFIG-",
+        env_prefix="CONFIG-",
     )
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
     token_config: TokenConfig = TokenConfig()
+    bot_config: BotConfig
 
 settings = Settings()

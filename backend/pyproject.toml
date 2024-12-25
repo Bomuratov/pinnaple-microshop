@@ -19,6 +19,8 @@ asyncpg = "^0.29.0"
 greenlet = "^3.1.0"
 fastapi-users = {extras = ["sqlalchemy"], version = "^14.0.0"}
 bcrypt = "^4.2.1"
+redis = "^5.2.1"
+aiogram = "^3.16.0"
 
 
 [build-system]
