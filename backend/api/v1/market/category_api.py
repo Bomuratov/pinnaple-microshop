@@ -1,7 +1,7 @@
 from fastapi import Depends, APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List
-from backend.authorization import CheckUser
+from backends.authorization import CheckUser
 from crud.market import CategoryCRUD
 from core import db_helper, settings
 from schemas.market import CategoryGET, CategoryCreate
