@@ -1,6 +1,10 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from typing import AsyncGenerator
 from core.settings import settings
+import redis
+
+
+db_redis = redis.Redis(host="localhost", port=6379, db=0)
 
 
 class DatabaseHelper:

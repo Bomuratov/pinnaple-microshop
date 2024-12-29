@@ -1,11 +1,7 @@
 import re
-import uuid
 import bcrypt
-from fastapi import Depends
-from fastapi_users.db import SQLAlchemyUserDatabase
 from sqlalchemy.orm import mapped_column, validates
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import UUID, String, Date, Boolean
+from sqlalchemy import String, Boolean
 from models import Basemodel
 from core.utils import hashing_password
 from core import db_helper
@@ -59,5 +55,5 @@ class UserModel(Basemodel):
     @validates("phone")
     def validate_phone(self, key, value):
         if not re.match(r"^\+998[0-9]{9}$", value):
-            raise ValueError("Неправильный формат номера (пример: +998XXZZZYYZZ)")
+            raise ValueError("Неправильный формат номера (пример: +998ZZZXXYYZZ)")
         return value
