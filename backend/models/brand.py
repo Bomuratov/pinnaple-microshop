@@ -9,6 +9,7 @@ class Brand(Basemodel):
 
     name = mapped_column(String(length=150), nullable=False)
 
+
 class Brandon(Basemodel):
     __tablename__ = "brandons"
 
