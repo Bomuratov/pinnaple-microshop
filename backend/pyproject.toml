@@ -4,7 +4,8 @@ version = "0.1.0"
 description = ""
 authors = ["me"]
 license = "MIT"
-readme = "README.md"
+package-mode = false
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -21,6 +22,7 @@ fastapi-users = {extras = ["sqlalchemy"], version = "^14.0.0"}
 bcrypt = "^4.2.1"
 redis = "^5.2.1"
 aiogram = "^3.16.0"
+colorlog = "^6.9.0"
 
 
 [build-system]

@@ -22,5 +22,5 @@ async def user_get_by_id(id: int, session: AsyncSession = Depends(db_helper.sess
 
 @router.put("/{id}", response_model=UserRead)
 async def user_update(id: int, data: Annotated[UserEdit, Form()], session: AsyncSession = Depends(db_helper.session_getter)):
-    return await UserCRUD.update(id, data,session)
+    return await UserCRUD.update(id, data, session)
 

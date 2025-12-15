@@ -8,8 +8,9 @@ BASE_DIR = Path(__file__).parent.parent
 load_dotenv(dotenv_path=Path("~/.env"))
 
 class RunConfig(BaseModel):
-    host: str = "127.0.0.1"
+    host: str = "localhost"
     port: int = 8000
+    port_redis: int = 6379
 
 
 class ApiAuthPrefix(BaseModel):
@@ -18,12 +19,14 @@ class ApiAuthPrefix(BaseModel):
     role: str = "/role"
     login: str = "/login"
     logout: str = "/logout"
+    verify: str = "/verify"
 
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     auth: str = "/auth"
     brand: str = "/brand"
     category: str = "/category"
+    product: str = "/product"
     
 
 class ApiPrefix(BaseModel):

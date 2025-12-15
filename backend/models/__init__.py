@@ -1,6 +1,7 @@
 __all__=(
     "Basemodel",
     "Brand",
+    "Brandon",
     "Category",
     "Product",
     "UserRole",
@@ -8,7 +9,7 @@ __all__=(
 )
 
 from .basemodel import Basemodel
-from .brand import Brand
+from .brand import Brand, Brandon
 from .category import Category
 from .product import Product
 from .users import UserModel

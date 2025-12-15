@@ -4,7 +4,7 @@ from core.settings import settings
 import redis
 
 
-db_redis = redis.Redis(host="localhost", port=6379, db=0)
+db_redis = redis.Redis(host=settings.run.host, port=settings.run.port_redis, db=0)
 
 
 class DatabaseHelper:

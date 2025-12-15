@@ -1,17 +1,11 @@
 import random
-from fastapi import APIRouter, HTTPException, status, responses
-from pydantic import BaseModel
-from authenticator.api.v1.send_code import send_code
-from core import db_redis
+from fastapi import APIRouter, HTTPException, status
+from schemas.authentication.verification import Number
+from bot.api.v1.send_code import send_code
+from core import db_redis, settings
 
 
-router = APIRouter(prefix="/redis/test", tags=["test verufication with redis"])
-
-class Number(BaseModel):
-    number: str
-
-class VerifyCode(Number):
-    code: int 
+router = APIRouter(prefix=settings.api.auth.verify, tags=["Authorization"])
 
 
 @router.post("/")

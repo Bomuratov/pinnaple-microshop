@@ -12,3 +12,4 @@ class Product(Basemodel):
     price = mapped_column(Integer, nullable=False)
     brand = mapped_column(Integer, ForeignKey("brands.id"), nullable=False)
     category = mapped_column(Integer, ForeignKey("categorys.id"), nullable=False)
+    photo = mapped_column(String(length=255), nullable=False)
