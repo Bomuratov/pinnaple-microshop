@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from typing import Optional
 from pydantic.types import UUID4
 
+
 class UserAddEdit(BaseModel):
     username: str
     email: str
@@ -26,6 +27,7 @@ class UserRead(UserAddEdit):
     is_active: Optional[bool]
     is_superuser: Optional[bool]
     is_staff: Optional[bool]
+
 
 class UserEdit(BaseModel):
     username: str | None
