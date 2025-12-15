@@ -1,6 +1,7 @@
 from fastapi import File, UploadFile
-from pydantic import  BaseModel
+from pydantic import BaseModel
 from typing import Optional
+
 
 class ProductAdd(BaseModel):
     name: str
@@ -14,6 +15,7 @@ class ProductAdd(BaseModel):
 class ProductGet(ProductAdd):
     id: int
 
+
 class ProductEdit(BaseModel):
     name: Optional[str]
     description: Optional[str]
@@ -22,5 +24,3 @@ class ProductEdit(BaseModel):
     brand: Optional[int]
     category: Optional[int]
     photo: Optional[str]
-
-    
